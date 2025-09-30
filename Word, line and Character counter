@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main() {
+    char str[1000];
+    int characters = 0, words = 0, lines = 0;
+    int i, len;
+    printf("Enter text (end input with an empty line):\n");
+    while (fgets(str, sizeof(str), stdin)) {
+        if (str[0] == '\n')   // stop if empty line
+            break;
+        len = strlen(str);
+        characters += len;
+        lines++;
+        for (i = 0; i < len; i++) {
+            if ((i == 0 && !isspace(str[i])) ||
+                (!isspace(str[i]) && isspace(str[i-1]))) {
+                words++;
+            }
+        }
+    }
+    printf("\nCharacters: %d\n", characters);
+    printf("Words: %d\n", words);
+    printf("Lines: %d\n", lines);
+    return 0;
+}
