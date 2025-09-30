@@ -1,15 +1,26 @@
 #include <stdio.h>
 struct Student {
-    char name[20];
-    int marks[5], total;
-    float avg;
-    char grade;
+    char name[30];
+    int marks[5];
 };
 int main() {
-    struct Student s; int i;
-    printf("Name: "); scanf("%s", s.name);
-    for(s.total=i=0;i<5;i++){ scanf("%d",&s.marks[i]); s.total+=s.marks[i]; }
-    s.avg=s.total/5.0;
-    s.grade = (s.avg>=75)?'A':(s.avg>=60)?'B':(s.avg>=40)?'C':'F';
-    printf("\n%s %d %.1f %c\n",s.name,s.total,s.avg,s.grade);
+    struct Student s;
+    int total = 0, i;
+    float avg;
+    char grade;
+    printf("Enter name: ");
+    scanf("%s", s.name);
+    for(i=0;i<5;i++){
+        printf("Enter mark %d: ", i+1);
+        scanf("%d", &s.marks[i]);
+        total += s.marks[i];
+    }
+    avg = total / 5.0;
+    if(avg >= 75) grade = 'A';
+    else if(avg >= 60) grade = 'B';
+    else if(avg >= 40) grade = 'C';
+    else grade = 'F';
+    printf("\nName\tTotal\tAverage\tGrade\n");
+    printf("%s\t%d\t%.1f\t%c\n", s.name, total, avg, grade);
+    return 0;
 }
